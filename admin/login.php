@@ -4,6 +4,20 @@ include "koneksi/koneksi.php";
 if (isset($_POST['login'])) {
     $email = htmlspecialchars($_POST['email']);
     $password = sha1($_POST['password']);
+    // $query = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
+    // $result = mysqli_query($koneksi, $query);
+    // if (mysqli_num_rows($result) > 0) {
+    //     $row = mysqli_fetch_assoc($result);
+    //     ($row['password'] == $password);
+    //     $_SESSION['id'] = $row['id'];
+    //     $_SESSION['nama'] = $row['nama'];
+    //     $_SESSION['email'] = $row['email'];
+    //     header('location: index.php');
+    //     } else {
+    //         echo "Email atau password salah";
+    //         }
+    //         }
+            
 
     $query = mysqli_query($koneksi, "SELECT * FROM user  WHERE user.email = '$email'");
     if (mysqli_num_rows($query) > 0) {
@@ -13,7 +27,9 @@ if (isset($_POST['login'])) {
             $_SESSION['email'] = $dataUser['email'];
             $_SESSION['id_level'] = $dataUser['id_level'];
             header('location: index.php');
-            exit;
+            } else {
+             echo "<h1>Email atau password salah</h1>";
+            // exit;
         }
     }
 }

@@ -15,8 +15,8 @@ if (isset($_GET['delete'])) {
             <th>No</th>
             <th>Nama</th>
             <th>Email</th>
-            <th>Level</th>
-            <th>Aksi</th>
+            <!-- <th>Level</th>
+            <th>Aksi</th> -->
         </tr>
     </thead>
     <tbody>
@@ -26,8 +26,8 @@ if (isset($_GET['delete'])) {
             <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $row['nama_lengkap'] ?></td>
-                <td><?php echo $row['email'] ?></td>
-                <td><?php echo $row['nama_level'] ?></td>
+                <td><?php  $row['email'] ?></td>
+                <td><?php  $row['nama_level'] ?></td>
                 <td><a href="?pg=tambah-user&edit=<?php echo $row['id']; ?>" class="btn btn-xs btn-success">Edit</a>|<a
                         onclick="return confirm('apakah anda yakin untuk menghapus data ini?')"
                         href="?pg=user&delete=<?php echo $row['id'] ?>" class="btn btn-xs btn-danger">Delete</a>

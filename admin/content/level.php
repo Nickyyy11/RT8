@@ -21,13 +21,14 @@ if (isset($_GET['delete'])) {
     </thead>
     <tbody>
         <?php $no = 1;
-        while ($row = mysqli_fetch_assoc($querry)) : ?>
+        while ($row = mysqli_fetch_assoc($querry)): ?>
             <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $row['nama_level'] ?></td>
                 <td><?php echo $row['keterangan'] ?></td>
                 <td><a href="?pg=tambah-level&edit=<?php echo $row['id']; ?>" class="btn btn-xs btn-success">Edit</a> |
-                    <a onclick="return confirm('apakah anda yakin untuk menghapus data ini?')" href="?pg=level&delete=<?php echo $row['id']; ?>" class="btn btn-xs btn-danger">Delete</a>
+                    <a onclick="return confirm('apakah anda yakin untuk menghapus data ini?')"
+                        href="?pg=level&delete=<?php echo $row['id']; ?>" class="btn btn-xs btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endwhile; ?>

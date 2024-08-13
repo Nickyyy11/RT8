@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-sm-4">
 
-            </div>
+             </div> 
         </div>
         <div class="form-group ">
             <label for="email" class="text-black">Email</label>
@@ -48,7 +48,7 @@
             <input type="password" name="password" class="form-control mb-3" id="password">
         </div>
         <button name="simpan" value="Simpan" type="submit" class="btn btn-warning ">
-            Login
+            Logindd
         </button>
         <a href="?pg=member"></a>
     </form>

@@ -14,7 +14,7 @@ if (isset($_POST['simpan'])) {
         $id = mysqli_insert_id($koneksi);
         $update = mysqli_query($koneksi, "UPDATE setting SET 
         email = '$email', 
-        no_tlp_website = '$no_tlp_website', 
+        notlp_website = '$no_tlp_website', 
         alamat_website = '$alamat_website', 
         fb = '$facebook_link', 
         ig = '$instagram_link', 
@@ -25,7 +25,7 @@ if (isset($_POST['simpan'])) {
         // insert
         $insert = mysqli_query(
             $koneksi,
-            "INSERT INTO setting (email, alamat_website, no_tlp_website,fb, ig, twitter, linkedin)
+            "INSERT INTO setting (email_website, alamat_website, notlp_website,fb, ig, twitter, linkedin)
         VALUES ('$email','$no_tlp_website','$alamat_website','$facebook_link','$instagram_link','$twitter_link','$linkedin_link')"
         );
         header("location:?pg=setting&tambah=berhasil");
@@ -37,11 +37,13 @@ $rowSetting = mysqli_fetch_assoc($querySetting);
 <form action="" method="post">
     <div class="mb-3">
         <label for="" class="form-label">Email address</label>
-        <input value="<?= $rowSetting['email'] ?>" type="email" class="form-control" name="email" placeholder="Email address">
+        <input value="<?= $rowSetting['email_website'] ?>" type="email" class="form-control" name="email_website"
+            placeholder="Email address">
     </div>
     <div class="mb-3">
         <label for="">Telpon Website</label>
-        <input value="<?= $rowSetting['no_tlp_website'] ?>" type="text" class="form-control" name="no_tlp_website" placeholder="Telpon Website">
+        <input value="<?= $rowSetting['notlp_website'] ?>" type="text" class="form-control" name="notlp_website"
+            placeholder="Telpon Website">
     </div>
     <div class="mb-3">
         <label for="">Alamat</label>
@@ -57,11 +59,13 @@ $rowSetting = mysqli_fetch_assoc($querySetting);
     </div>
     <div class="mb-3">
         <label for="">Twitter Link</label>
-        <input value="<?= $rowSetting['twitter'] ?>" type="text" class="form-control" name="twitter" placeholder="Twitter  Link">
+        <input value="<?= $rowSetting['twitter'] ?>" type="text" class="form-control" name="twitter"
+            placeholder="Twitter  Link">
     </div>
     <div class="mb-3">
         <label for="">Linkedin</label>
-        <input value="<?= $rowSetting['linkedin'] ?>" type="text" class="form-control" name="linkedin" placeholder="Linkedin Link">
+        <input value="<?= $rowSetting['linkedin'] ?>" type="text" class="form-control" name="linkedin"
+            placeholder="Linkedin Link">
     </div>
     <div class="mb-3">
         <label for="">Logo</label>
