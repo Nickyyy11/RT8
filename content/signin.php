@@ -1,6 +1,6 @@
 <?php
 // koneksi database
-$conn = mysqli_connect("localhost:3306", "root", "", "rute8");
+$conn = mysqli_connect("localhost:3307", "root", "", "rute8");
 
 // cek koneksi
 if (!$conn) {
@@ -8,7 +8,8 @@ if (!$conn) {
 }
 
 // fungsi untuk menghindari injeksi SQL
-function anti_inject($data) {
+function anti_inject($data)
+{
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
@@ -39,10 +40,12 @@ if (isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Login Member</title>
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
 </head>
+
 <body>
   <div class="container">
     <h2>Login Member</h2>
@@ -59,4 +62,5 @@ if (isset($_POST['submit'])) {
     </form>
   </div>
 </body>
+
 </html>

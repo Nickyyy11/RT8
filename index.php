@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
@@ -66,7 +64,9 @@
     <script src="asset/rt/public/vendors/fontawesome/all.min.js"></script>
     <script src="asset/rt/public/assets/js/theme.js"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Volkhov:wght@700&amp;display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Volkhov:wght@700&amp;display=swap"
+        rel="stylesheet">
 </body>
 
 </html>
