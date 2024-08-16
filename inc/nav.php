@@ -13,8 +13,8 @@ if (isset($_SESSION['nama_lengkap'])) {
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light sticky-top" data-navbar-on-scroll="data-navbar-on-scroll">
-    <div class="container"><a class="navbar-brand" href="index.php"><img src="asset/rt/public/assets/img/logo.svg"
-                height="31" alt="logo" /></a>
+    <div class="container"><a class="navbar-brand" href="index.php"><img src="asset/rt/rt8.png" height="31"
+                alt="logo" /></a>
         <!-- logo.svg adalah gambar productly di nav  ^^^^-->
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

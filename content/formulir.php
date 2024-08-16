@@ -1,3 +1,30 @@
+<?php
+include "admin/koneksi/koneksi.php";
+
+$querry = mysqli_query($koneksi, "SELECT formulir.*, iuran.nama_iuran FROM formulir JOIN iuran ON formulir.id_iuran = iuran.id ORDER BY formulir.id DESC");
+
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $delete = mysqli_query($koneksi, "DELETE FROM formulir WHERE id ='$id'");
+    header('location:?pg=formulir&hapus=berhasil');
+}
+
+if (isset($_POST['simpan'])) {
+    $kepala_keluarga = $_POST['kepala_keluarga'];
+    $nik = $_POST['nik'];
+    $alamat = $_POST['alamat'];
+    $telp = $_POST['telp'];
+    $id_iuran = $_POST['id_iuran'];
+    //MASUKKAN KE DALAM TABEL formulir (FIELD YANG AKAN DI MASUKKAN)
+    //VALUE (INPUTAN MASING-MASING KOLOM)
+
+    $insert = mysqli_query($koneksi, "INSERT INTO formulir (kepala_keluarga, nik, alamat, telp, id_iuran) VALUES ('$kepala_keluarga','$nik','$alamat','$telp','$id_iuran')");
+
+    header('Location: ?pg=done-formulir&pesan=tambah-berhasil');
+}
+$queryIuran = mysqli_query($koneksi, "SELECT * FROM formulir ORDER BY id DESC")
+
+?>
 <!-- ============================================-->
 <!-- <section> begin product============================-->
 <section class="pt-5 pt-md-9 mb-6" id="feature">
@@ -9,53 +36,54 @@
 
 
     <div class="container">
-        <h1 class="fs-9 fw-bold mb-4 text-center"> Formulir <br /></h1>
-        <div class="row">
-            <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3"
-                    src="asset/rt/public/assets/img/category/icon1.png" width="75" alt="Feature" />
-                <h4 class="mb-3">First click tests</h4>
-                <p class="mb-0 fw-medium text-secondary">While most people enjoy casino gambling,</p>
-            </div>
-            <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3"
-                    src="asset/rt/public/assets/img/category/icon2.png" width="75" alt="Feature" />
-                <h4 class="mb-3">Design surveys</h4>
-                <p class="mb-0 fw-medium text-secondary">Sports betting,lottery and bingo playing for the fun
-                </p>
-            </div>
-            <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3"
-                    src="asset/rt/public/assets/img/category/icon3.png" width="75" alt="Feature" />
-                <h4 class="mb-3">Preference tests</h4>
-                <p class="mb-0 fw-medium text-secondary">The Myspace page defines the individual.</p>
-            </div>
-            <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3"
-                    src="asset/rt/public/assets/img/category/icon4.png" width="75" alt="Feature" />
-                <h4 class="mb-3">Five second tests</h4>
-                <p class="mb-0 fw-medium text-secondary">Personal choices and the overall personality of the
-                    person.</p>
-            </div>
-        </div>
-        <div class="text-center"><a class="btn btn-warning" href="#!" role="button">SIGN UP NOW</a></div>
+        <h1 class="fs-9 fw-bold mb-4 text-center"> Formulir Pembayaran <br /></h1>
     </div>
     <!-- end of .container-->
 
     <form action="" method="post" class="container col-6">
-        <div class="row">
-            <div class="col-sm-4">
-
-            </div>
+        <div class="form-group ">
+            <label for="kepala_keluarga" class="text-black">Nama Kepala Keluarga</label>
+            <input type="text" name="kepala_keluarga" class="form-control mb-3" id="kepala_keluarga">
         </div>
         <div class="form-group ">
-            <label for="email" class="text-black">Email</label>
-            <input type="email" name="email" class="form-control mb-3" id="email">
+            <label for="bulan" class="text-black">Nomer NIK</label>
+            <input type="text" name="nik" class="form-control mb-3">
         </div>
         <div class="form-group ">
-            <label for="password" class="text-black">Password</label>
-            <input type="password" name="password" class="form-control mb-3" id="password">
+            <label for="bulan" class="text-black">Alamat</label>
+            <input type="text" name="alamat" class="form-control mb-3">
         </div>
-        <button name="simpan" value="Simpan" type="submit" class="btn btn-warning ">
-            Login
-        </button>
-        <a href="?pg=member"></a>
+        <div class="form-group ">
+            <label for="bulan" class="text-black">Email</label>
+            <input type="text" name="email" class="form-control mb-3">
+        </div>
+        <div class="col-6">
+            <div class="mb-1 py-2">
+                <?php
+                $queryOpt = mysqli_query($koneksi, "SELECT * FROM formulir");
+                // var_dump($row); untuk mengecek
+                ?>
+                <option>Pilih Jenis Iuran :</option>
+                <select class="form-control" name="iuran" id="iuran">
+                    <?php
+                    while ($row = mysqli_fetch_assoc($queryOpt)):
+                    ?>
+                        <option value="<?= $row['id'] ?>">Iuran Sampah : <?= $row['nama_iuran'] ?> |
+                            Harga : <?= $row['harga'] ?>
+                        </option>
+                        <option value="<?= $row['id'] ?>">Iuran Satpam : <?= $row['nama_iuran'] ?> |
+                            Harga : <?= $row['harga'] ?>
+                        </option>
+                        <option value="<?= $row['id'] ?>">Iuran Bulanan : <?= $row['nama_iuran'] ?> |
+                            Harga : <?= $row['harga'] ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div><br><br>
+            <button name="simpan" value="Simpan" type="submit" class="btn btn-warning ">
+                Login
+            </button>
+            <a href="?pg=member"></a>
     </form>
 </section>
 <!-- <section> close ============================-->
