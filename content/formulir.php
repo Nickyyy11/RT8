@@ -1,7 +1,7 @@
 <?php
 include "admin/koneksi/koneksi.php";
 
-$querry = mysqli_query($koneksi, "SELECT formulir.*, iuran.nama_iuran FROM formulir JOIN iuran ON formulir.id_iuran = iuran.id ORDER BY formulir.id DESC");
+$querry = mysqli_query($koneksi, "SELECT formulir.*, iuran.nama_iuran, iuran.harga FROM formulir JOIN iuran ON formulir.id_iuran = iuran.id ORDER BY formulir.id DESC");
 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
@@ -13,12 +13,13 @@ if (isset($_POST['simpan'])) {
     $kepala_keluarga = $_POST['kepala_keluarga'];
     $nik = $_POST['nik'];
     $alamat = $_POST['alamat'];
+    $email = $_POST['email'];
     $telp = $_POST['telp'];
     $id_iuran = $_POST['id_iuran'];
     //MASUKKAN KE DALAM TABEL formulir (FIELD YANG AKAN DI MASUKKAN)
     //VALUE (INPUTAN MASING-MASING KOLOM)
 
-    $insert = mysqli_query($koneksi, "INSERT INTO formulir (kepala_keluarga, nik, alamat, telp, id_iuran) VALUES ('$kepala_keluarga','$nik','$alamat','$telp','$id_iuran')");
+    $insert = mysqli_query($koneksi, "INSERT INTO formulir (kepala_keluarga, nik, alamat, email, telp, id_iuran) VALUES ('$kepala_keluarga','$nik','$alamat','$email','$telp','$id_iuran')");
 
     header('Location: ?pg=done-formulir&pesan=tambah-berhasil');
 }
@@ -40,51 +41,62 @@ $queryIuran = mysqli_query($koneksi, "SELECT * FROM formulir ORDER BY id DESC")
     </div>
     <!-- end of .container-->
 
-    <form action="" method="post" class="container col-6">
-        <div class="form-group ">
-            <label for="kepala_keluarga" class="text-black">Nama Kepala Keluarga</label>
-            <input type="text" name="kepala_keluarga" class="form-control mb-3" id="kepala_keluarga">
-        </div>
-        <div class="form-group ">
-            <label for="bulan" class="text-black">Nomer NIK</label>
-            <input type="text" name="nik" class="form-control mb-3">
-        </div>
-        <div class="form-group ">
-            <label for="bulan" class="text-black">Alamat</label>
-            <input type="text" name="alamat" class="form-control mb-3">
-        </div>
-        <div class="form-group ">
-            <label for="bulan" class="text-black">Email</label>
-            <input type="text" name="email" class="form-control mb-3">
-        </div>
-        <div class="col-6">
-            <div class="mb-1 py-2">
-                <?php
-                $queryOpt = mysqli_query($koneksi, "SELECT * FROM formulir");
-                // var_dump($row); untuk mengecek
-                ?>
-                <option>Pilih Jenis Iuran :</option>
-                <select class="form-control" name="iuran" id="iuran">
+    <form action="" method="post" class="container">
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="form-group ">
+                    <label for="kepala_keluarga" class="text-black">Kepala Keluarga :</label>
+                    <input type="text" name="kepala_keluarga" class="form-control mb-3" id="kepala_keluarga"
+                        placeholder="Masukkan Nama Kepala Keluarga" required>
+                </div>
+                <div class="form-group ">
+                    <label for="bulan" class="text-black">NIK :</label>
+                    <input type="number" name="nik" class="form-control mb-3" placeholder="Masukkan NIK Keluarga"
+                        required>
+                </div>
+                <div class="form-group ">
+                    <label for="bulan" class="text-black">Alamat :</label>
+                    <input type="text" name="alamat" class="form-control mb-3" placeholder="Masukkan Alamat Keluarga"
+                        required>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group ">
+                    <label for="bulan" class="text-black">Email :</label>
+                    <input type="email" name="email" class="form-control mb-3" placeholder="Masukkan Email" required>
+                </div>
+                <div class="form-group ">
+                    <label for="bulan" class="text-black">Telepon :</label>
+                    <input type="number" name="telp" class="form-control mb-3" placeholder="Masukkan Nomor Telp"
+                        required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="">Formulir :</label>
                     <?php
-                    while ($row = mysqli_fetch_assoc($queryOpt)):
+                    $queryOpt = mysqli_query($koneksi, "SELECT * FROM iuran");
+
+                    // var_dump($row); untuk mengecek
                     ?>
-                        <option value="<?= $row['id'] ?>">Iuran Sampah : <?= $row['nama_iuran'] ?> |
-                            Harga : <?= $row['harga'] ?>
+                    <select class="form-control" name="id_iuran" id="id_iuran">
+                        <option class="form-control" value="">-- Pilih Iuran --</option>
+                        <?php
+                        while ($row = mysqli_fetch_assoc($queryOpt)):
+                        ?>
+                        <option value="<?= $row['id'] ?>"><?= $row['nama_iuran'] ?> | Harga :
+                            <?= $row['harga'] ?>
                         </option>
-                        <option value="<?= $row['id'] ?>">Iuran Satpam : <?= $row['nama_iuran'] ?> |
-                            Harga : <?= $row['harga'] ?>
-                        </option>
-                        <option value="<?= $row['id'] ?>">Iuran Bulanan : <?= $row['nama_iuran'] ?> |
-                            Harga : <?= $row['harga'] ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
-            </div><br><br>
-            <button name="simpan" value="Simpan" type="submit" class="btn btn-warning ">
-                Login
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <button name="simpan" value="Simpan" type="submit" class="form-control btn btn-warning ">
+                Simpan
             </button>
-            <a href="?pg=member"></a>
+        </div>
+
+        <a href="?pg=member"></a>
     </form>
 </section>
-<!-- <section> close ============================-->
-<!-- ============================================-->
