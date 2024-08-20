@@ -17,7 +17,8 @@ if (isset($_POST['login'])) {
     //         echo "Email atau password salah";
     //         }
     //         }
-            
+    // print_r($_POST);
+    // die;
 
     $query = mysqli_query($koneksi, "SELECT * FROM user  WHERE user.email = '$email'");
     if (mysqli_num_rows($query) > 0) {
@@ -27,8 +28,8 @@ if (isset($_POST['login'])) {
             $_SESSION['email'] = $dataUser['email'];
             $_SESSION['id_level'] = $dataUser['id_level'];
             header('location: index.php');
-            } else {
-             echo "<h1>Email atau password salah</h1>";
+        } else {
+            echo "<h1>Email atau password salah</h1>";
             // exit;
         }
     }
@@ -65,7 +66,7 @@ if (isset($_POST['login'])) {
         <div class="card">
             <div class="card-body login-card-body">
                 <?php if (isset($_GET['access'])): ?>
-                    <div class="alert alert-danger">MOHON LOGIN TERLEBIH DAHULU</div>
+                <div class="alert alert-danger">MOHON LOGIN TERLEBIH DAHULU</div>
                 <?php endif; ?>
                 <p class="login-box-msg">Sign in to start your session</p>
 

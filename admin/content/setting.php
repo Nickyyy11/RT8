@@ -33,7 +33,7 @@ if (isset($_POST['simpan'])) {
 }
 $rowSetting = mysqli_fetch_assoc($querySetting);
 ?>
-
+<h1>huyh</h1>
 <form action="" method="post">
     <div class="mb-3">
         <label for="" class="form-label">Email address</label>

@@ -34,8 +34,8 @@ if (isset($_SESSION['nama_lengkap'])) {
                             href="?pg=profil"><?php echo $_SESSION['nama_lengkap']; ?></a><a class="btn btn-danger ms-3"
                             href="?pg=logout">Logout</a></div>
                 <?php } else { ?>
-                    <div class="d-flex ms-lg-4"><a class="btn btn-secondary-outline" href="?pg=signin">Sign In</a><a
-                            class="btn btn-warning ms-3 " href="?pg=signup">Sign Up</a></div>
+                    <div class="d-flex ms-lg-4"><a class="btn btn-secondary-outline" href="?pg=signin">Masuk</a><a
+                            class="btn btn-warning ms-3 " href="?pg=signup">Daftar</a></div>
                 <?php } ?>
             </ul>
         </div>

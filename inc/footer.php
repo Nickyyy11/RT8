@@ -26,7 +26,9 @@
 
         </div>
     </div><!-- end of .container-->
-
+    <div class="container border-top">
+        <p>&copy; 2024 Nama Perusahaan. Hak Cipta Dilindungi.</p>
+    </div>
 </section>
 <!-- <section> close ============================-->
 <!-- ============================================-->

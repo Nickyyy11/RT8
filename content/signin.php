@@ -42,25 +42,25 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-    <title>Login Member</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+  <title>Login Member</title>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
 </head>
 
 <body>
-    <div class="container">
-        <h2>Login Member</h2>
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control mb-3" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control mb-3" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary" name="submit">Login</button>
-        </form>
-    </div>
+  <div class="container">
+    <h2>Login Member</h2>
+    <form action="" method="post">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control mb-3" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control mb-3" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary" name="submit">Login</button>
+    </form>
+  </div>
 </body>
 
 </html>

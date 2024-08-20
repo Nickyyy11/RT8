@@ -51,7 +51,7 @@ $queryIuran = mysqli_query($koneksi, "SELECT * FROM formulir ORDER BY id DESC")
                 </div>
                 <div class="form-group ">
                     <label for="bulan" class="text-black">NIK :</label>
-                    <input type="number" name="nik" class="form-control mb-3" placeholder="Masukkan NIK Keluarga"
+                    <input type="text" name="nik" class="form-control mb-3" placeholder="Masukkan NIK Keluarga"
                         required>
                 </div>
                 <div class="form-group ">
@@ -75,14 +75,15 @@ $queryIuran = mysqli_query($koneksi, "SELECT * FROM formulir ORDER BY id DESC")
                     <?php
                     $queryOpt = mysqli_query($koneksi, "SELECT * FROM iuran");
 
-                    // var_dump($row); untuk mengecek
+                    // var_dump($row); 
+                    // untuk mengecek
                     ?>
                     <select class="form-control" name="id_iuran" id="id_iuran">
                         <option class="form-control" value="">-- Pilih Iuran --</option>
                         <?php
                         while ($row = mysqli_fetch_assoc($queryOpt)):
                         ?>
-                        <option value="<?= $row['id'] ?>"><?= $row['nama_iuran'] ?> | Harga :
+                        <option value="<?= $row['id'] ?>"><?= $row['nama_iuran'] ?> | Total Harga :
                             <?= $row['harga'] ?>
                         </option>
                         <?php endwhile; ?>
